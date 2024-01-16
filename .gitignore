@@ -10,6 +10,7 @@ crash.log
 crash.*.log
 
 *.gitignore.auto.tfvars
+*.token
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in

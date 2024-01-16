@@ -14,7 +14,6 @@ locals {
   lan_subnet = data.external.lan_net.result.subnet
   retry_join = data.external.avahi.result.other_ips
   server_count = length(local.retry_join) + 1
-  etc = "/tmp/test/etc"
 }
 
 resource "terraform_data" "config_files" {
@@ -29,7 +28,7 @@ resource "terraform_data" "config_files" {
         consul_token = var.consul_token
       }
     )
-    destination = "${local.etc}/${trimsuffix("each.key", ".tftpl")}"
+    destination = "/tmp/test/etc/${trimsuffix("each.key", ".tftpl")}"
   }
 }
 
