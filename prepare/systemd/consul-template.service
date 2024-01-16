@@ -1,0 +1,15 @@
+[Unit]
+Description=Hashicorp Consul Template
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/local/bin/consul-template -config="/etc/consul-template.d/consul-template.hcl"
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+User=consul
+Group=consul
+
+[Install]
+WantedBy=multi-user.target
