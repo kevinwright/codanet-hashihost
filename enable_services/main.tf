@@ -20,7 +20,7 @@ resource "terraform_data" "config_files" {
   for_each = fileset("${path.module}/config_files", "*/*.tftpl")
   provisioner "file" {
     content = templatefile(
-      each.key,
+      "${path.module}/config_files/${each.key}",
       {
         lan_ip = local.lan_ip,
         retry_join = local.retry_join,
