@@ -116,14 +116,8 @@ else
   printf "❗️ No user exists with id 1000\n"
 fi
 
-# Install systemd service files
-printf "● Installing systemd definitions for hashicorp services ... \n"
-cp ./systemd/*.service /etc/systemd/system
-
-# Install avahi-daemon service files
-printf "● Adding hashicorp services to ahavi annoncements ... \n"
-cp ./avahi/*.service /etc/avahi/services/
-systemctl restart dbus-org.freedesktop.Avahi
+# Install systemd and avahi-daemon service files
+$script_dir/refresh_services.sh
 
 # Docker name resolution before hitting the lan
 printf "● Adding local docker service to internal name resolution ... \n"
