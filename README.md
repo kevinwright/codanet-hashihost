@@ -6,11 +6,7 @@ _Note: All steps must be run as `root`_
 ## Preparation
 
 - sudo su -
-- apt install git
-- git clone https://github.com/kevinwright/codanet-hashihost.git
-- cd codanet-hashihost/prepare
-- ./prepare.sh
-
+- bash -c "$(curl -fsSL https://raw.githubusercontent.com/kevinwright/codanet-hashihost/main/web-bootstrap.sh)"
 ## Enable services
 
 In `enable_services`

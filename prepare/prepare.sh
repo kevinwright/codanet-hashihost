@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+full_script_path=$(readlink -f ${BASH_SOURCE[0]})
+script_dir=$(dirname ${full_script_path})
+
 printf "\n"
 printf "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
 printf "┃ Performing this machine for Hashicorp ┃\n"
@@ -138,8 +141,8 @@ printf "┗━━━━━━━━━━━━━━━━━━━━━━━
 printf "\n"
 printf "\n"
 
-call ./show_net.sh
+$script_dir/show_net.sh
 printf "\n"
 printf "\n"
-call ./show_peers.sh
+$script_dir/show_peers.sh
 printf "\n"
