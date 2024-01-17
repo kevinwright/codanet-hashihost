@@ -11,7 +11,7 @@ E_NOTROOT=87 # Non-root exit error.
 
 printf "● Ensuring we're root ... "
 
-if [ "${UID:-$(id -u)}" -eq "$ROOT_UID" ]; then
+if [ "${UID:-$(id -u)}" -eq 0 ]; then
   printf "✅\n"
 else
   printf "❌\n"
