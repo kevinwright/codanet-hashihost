@@ -12,7 +12,7 @@ data "external" "avahi" {
 locals {
   lan_ip = data.external.lan_net.result.ip
   lan_subnet = data.external.lan_net.result.subnet
-  retry_join = data.external.avahi.result.other_ips
+  retry_join = jsondecode(data.external.avahi.result.other_ips)
   server_count = length(local.retry_join) + 1
 }
 
