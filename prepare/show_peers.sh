@@ -6,6 +6,6 @@ avahi-browse -rtpl _hashicorp_consul_server._tcp | \
       BEGIN { print  "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
               print  "┃ Other hosts currently advertising are: ┃"
       }
-            { printf "┃ ● %-20s ┃" $8}
+            { printf "┃ ● %-20s ┃", $8}
       END   { print  "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"}      
     ' FS=";"
