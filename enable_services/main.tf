@@ -28,7 +28,7 @@ resource "local_file" "config_files" {
     "${path.module}/config_files/${each.key}",
     {
       lan_ip = local.lan_ip,
-      retry_join = local.retry_join,
+      retry_join = jsonencode(local.retry_join),
       server_count = local.server_count,
       consul_token = var.consul_token,
       gossip_key = var.gossip_key
