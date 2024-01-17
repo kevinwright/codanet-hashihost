@@ -30,7 +30,8 @@ resource "local_file" "config_files" {
       lan_ip = local.lan_ip,
       retry_join = local.retry_join,
       server_count = local.server_count,
-      consul_token = var.consul_token
+      consul_token = var.consul_token,
+      gossip_key = var.gossip_key
     }
   )
   filename = "/tmp/test/etc/${trimsuffix("each.key", ".tftpl")}"
