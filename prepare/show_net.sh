@@ -6,12 +6,12 @@ lan_subnet=$(ip -o -f inet route list dev $lan_interface | grep -v "default" | g
 docker_ip=$(ip -4 addr show docker0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
 docker_subnet=$(ip -o -f inet route list dev docker0 | grep -v "default" | awk '{print $1}')
 
-printf "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
-printf "┃ LAN interface:   %20s┃\n" "$lan_interface"
-printf "┃ LAN ip:          %20s┃\n" "$lan_ip"
-printf "┃ LAN subnet:      %20s┃\n" "$lan_subnet"
-printf "┠───────────────────────────────────────────────┨\n"
-printf "┃ Docker ip:       %20s┃\n" "$docker_ip"
-printf "┃ Docker subnet:   %20s┃\n" "$docker_subnet"
-printf "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
+printf "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
+printf "┃ LAN interface:   %-20s ┃\n" "$lan_interface"
+printf "┃ LAN ip:          %-20s ┃\n" "$lan_ip"
+printf "┃ LAN subnet:      %-20s ┃\n" "$lan_subnet"
+printf "┠──────────────────────────────────────┨\n"
+printf "┃ Docker ip:       %-20s ┃\n" "$docker_ip"
+printf "┃ Docker subnet:   %-20s ┃\n" "$docker_subnet"
+printf "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
 
