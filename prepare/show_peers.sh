@@ -3,10 +3,10 @@
 avahi-browse -rtpl _hashicorp_consul_server._tcp | \
     grep = | \
     awk '
-      BEGIN { print  "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-              print  "┃ Other hosts currently advertising are: ┃"
-              print  "┃                                        ┃"
+      BEGIN { print  "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+              print  "┃ Other advertising hosts:         ┃"
+              print  "┃                                  ┃"
       }
-            { printf "┃ ● %-36s ┃\n", $8}
-      END   { print  "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"}      
+            { printf "┃ ● %-30s ┃\n", $8}
+      END   { print  "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"}      
     ' FS=";"
