@@ -5,7 +5,11 @@ _Note: All steps must be run as `root`_
 
 ## Preparation
 
-Run `prepare.sh` in the `prepare` directory
+- sudo su -
+- apt install git
+- git clone https://github.com/kevinwright/codanet-hashihost.git
+- cd codanet-hashihost/prepare
+- ./prepare.sh
 
 ## Enable services
 

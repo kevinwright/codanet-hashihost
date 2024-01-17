@@ -125,8 +125,30 @@ printf "\n"
 printf "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n"
 printf "┃ Preparation is now complete                   ┃\n"
 printf "┃                                               ┃\n"
-printf "┃  Be sure to run this on all other applicable  ┃\n"
-printf "┃  hosts befor enabling services, so avahi      ┃\n"
-printf "┃  announcements are available for auto-config  ┃\n"
+printf "┃ Be sure to run this on all other applicable   ┃\n"
+printf "┃ hosts before enabling services, so avahi      ┃\n"
+printf "┃ announcements are available for auto-config   ┃\n"
 printf "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
+printf "\n"
+printf "\n"
+
+lan_interface=$(ip -o -f inet route | grep -e "^default" | awk '{print $5}')
+lan_ip=$(ip -4 addr show $lan_interface | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
+lan_subnet=$(ip -o -f inet route list dev $lan_interface | grep -v "default" | grep / | awk '{print $1}')
+docker_ip=$(ip -4 addr show docker0 | sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
+docker_subnet=$(ip -o -f inet route list dev docker0 | grep -v "default" | awk '{print $1}')
+
+printf "LAN interface: %s\n" "$lan_interface"
+printf "LAN ip:        %s\n" "$lan_ip"
+printf "LAN subnet:    %s\n" "$lan_subnet"
+printf "\n"
+printf "Docker ip:     %s\n" "$docker_ip"
+printf "Docker subnet: %s\n" "$docker_subnet"
+printf "\n"
+printf "\n"
+printf "Other hosts currently advertising are:\n"
+avahi-browse -rtpl _hashicorp_consul_server._tcp | \
+    grep = | \
+    awk '{print $8}' FS=";"
+
 printf "\n"
