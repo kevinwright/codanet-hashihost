@@ -34,7 +34,7 @@ resource "local_file" "config_files" {
       gossip_key = var.gossip_key
     }
   )
-  filename = "/tmp/test/etc/${trimsuffix("each.key", ".tftpl")}"
+  filename = "/etc/${trimsuffix("${each.key}", ".tftpl")}"
 }
 
 resource "terraform_data" "start_services" {
