@@ -28,6 +28,7 @@ printf "● Apt-update and install pre-requisites\n"
 
 apt-get -y update
 apt-get -y install \
+  auto-apt-proxy \
   apt-transport-https \
   ca-certificates \
   curl \
