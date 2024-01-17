@@ -10,7 +10,7 @@ printf "┏━━━━━━━━━━━━━━━━━━━━━━━
 printf "┃ LAN interface:   %-15s ┃\n" "$lan_interface"
 printf "┃ LAN ip:          %-15s ┃\n" "$lan_ip"
 printf "┃ LAN subnet:      %-15s ┃\n" "$lan_subnet"
-printf "┠──────────────────────────────────────┨\n"
+printf "┠──────────────────────────────────┨\n"
 printf "┃ Docker ip:       %-15s ┃\n" "$docker_ip"
 printf "┃ Docker subnet:   %-15s ┃\n" "$docker_subnet"
 printf "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
