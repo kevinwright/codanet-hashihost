@@ -22,20 +22,18 @@ locals {
   server_count = length(local.retry_join) + 1
 }
 
-resource "local" "config_files" {
+resource "local_file" "config_files" {
   for_each = fileset("${path.module}/config_files", "*/*.tftpl")
-  provisioner "local_file" {
-    content = templatefile(
-      "${path.module}/config_files/${each.key}",
-      {
-        lan_ip = local.lan_ip,
-        retry_join = local.retry_join,
-        server_count = local.server_count,
-        consul_token = var.consul_token
-      }
-    )
-    destination = "/tmp/test/etc/${trimsuffix("each.key", ".tftpl")}"
-  }
+  content = templatefile(
+    "${path.module}/config_files/${each.key}",
+    {
+      lan_ip = local.lan_ip,
+      retry_join = local.retry_join,
+      server_count = local.server_count,
+      consul_token = var.consul_token
+    }
+  )
+  filename = "/tmp/test/etc/${trimsuffix("each.key", ".tftpl")}"
 }
 
 resource "terraform_data" "start_services" {
