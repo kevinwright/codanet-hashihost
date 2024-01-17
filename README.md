@@ -6,7 +6,7 @@ _Note: All steps must be run as `root`_
 ## Preparation
 
 - sudo su -
-- bash -c "$(curl -fsSL https://raw.githubusercontent.com/kevinwright/codanet-hashihost/main/web-bootstrap.sh)"
+- wget -q -O - "https://raw.githubusercontent.com/kevinwright/codanet-hashihost/main/web-bootstrap.sh" | bash
 ## Enable services
 
 In `enable_services`
