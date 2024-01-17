@@ -105,14 +105,12 @@ user1000=$(id -nu 1000)
 RESULT=$?
 if [ $RESULT -eq 0 ]; then
   usermod -a -G sudo $user1000
+  echo '$USER ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-without-password
+  echo "auth sufficient pam_succeed_if.so use_uid user ingroup sudo" >> /etc/pam.d/su
   printf "✅\n"
 else
   printf "❗️ No user exists with id 1000\n"
 fi
-
-
-echo '$USER ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-without-password
-echo "auth sufficient pam_succeed_if.so use_uid user ingroup sudo" >> /etc/pam.d/su
 
 # Install systemd service files
 printf "● Installing systemd definitions for hashicorp services ... \n"
@@ -120,7 +118,7 @@ cp ./systemd/*.service /etc/systemd/system
 
 # Install avahi-daemon service files
 printf "● Adding hashicorp services to ahavi annoncements ... \n"
-cp ./avahi/*.service /etc/avahi/services/system
+cp ./avahi/*.service /etc/avahi/services/
 systemctl restart dbus-org.freedesktop.Avahi
 
 # Docker name resolution before hitting the lan
