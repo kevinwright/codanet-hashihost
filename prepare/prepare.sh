@@ -23,8 +23,8 @@ fi
 # Install pre-requisites
 printf "● Apt-update and install pre-requisites\n"
 
-sudo apt-get -y update
-sudo apt-get -y install \
+apt-get -y update
+apt-get -y install \
   apt-transport-https \
   ca-certificates \
   curl \
@@ -34,7 +34,7 @@ sudo apt-get -y install \
 # Clean out old docker packages
 printf "● Removing any legacy docker packages\n"
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
-  sudo apt-get -y remove $pkg
+  apt-get -y remove $pkg
 done
 
 install -m 0755 -d /etc/apt/keyrings
@@ -75,9 +75,9 @@ echo "deb [arch=$arch signed-by=/usr/share/keyrings/httpie.gpg] https://packages
 # Update and install all the things
 printf "● apt-get update and install all the things ... \n"
 
-sudo apt-get -y update
+apt-get -y update
 
-sudo apt-get -y install \
+apt-get -y install \
   unzip \
   tree \
   redis-tools \
@@ -99,10 +99,18 @@ sudo apt-get -y install \
   terraform
 
 # Groups and passwordless sudo
-printf "● Enabling sudo without a password ... \n"
+printf "● Enabling sudo without a password ... "
 
 user1000=$(id -nu 1000)
-usermod -a -G sudo $user1000
+RESULT=$?
+if [ $RESULT -eq 0 ]; then
+  usermod -a -G sudo $user1000
+  printf "✅\n"
+else
+  printf "❗️ No user exists with id 1000\n"
+fi
+
+
 echo '$USER ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/sudo-without-password
 echo "auth sufficient pam_succeed_if.so use_uid user ingroup sudo" >> /etc/pam.d/su
 
