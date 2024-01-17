@@ -16,9 +16,9 @@ locals {
   server_count = length(local.retry_join) + 1
 }
 
-resource "terraform_data" "config_files" {
+resource "local" "config_files" {
   for_each = fileset("${path.module}/config_files", "*/*.tftpl")
-  provisioner "file" {
+  provisioner "local_file" {
     content = templatefile(
       "${path.module}/config_files/${each.key}",
       {
