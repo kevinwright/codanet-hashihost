@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-systemctl start consul.service
-systemctl start consul-template.service
-systemctl start nomad.service
-systemctl start vault.service
+systemctl --no-pager start consul.service
+systemctl --no-pager start consul-template.service
+systemctl --no-pager start nomad.service
+systemctl --no-pager start vault.service
 
