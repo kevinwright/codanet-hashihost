@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-systemctl status consul.service
-systemctl status consul-template.service
-systemctl status nomad.service
-systemctl status vault.service
+systemctl --no-pager status consul.service
+systemctl --no-pager status consul-template.service
+systemctl --no-pager status nomad.service
+systemctl --no-pager status vault.service
 
-#journalctl -xeu consul.service
-#journalctl -xeu consul-template.service
-#journalctl -xeu nomad.service
-#journalctl -xeu vault.service
+#journalctl --no-pager -xeu consul.service
+#journalctl --no-pager -xeu consul-template.service
+#journalctl --no-pager -xeu nomad.service
+#journalctl --no-pager -xeu vault.service
