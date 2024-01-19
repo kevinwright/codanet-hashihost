@@ -19,9 +19,3 @@ consul {
   address = "127.0.0.1:8500"
   #token = "${consul_token}"
 }
-
-acl {
-  enabled = true
-  default_policy = "allow"
-}
-
