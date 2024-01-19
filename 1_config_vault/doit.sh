@@ -21,6 +21,6 @@ case $(uname) in
 esac
 
 systemctl stop vault.service
-cat "$script_dir/vault.hcl.template" | envsubst > ${conf_dir}/vault.hcl
+cat "$script_dir/vault.d/vault.hcl.template" | envsubst > ${conf_dir}/vault.hcl
 systemctl --no-pager start vault.service
 systemctl --no-pager status vault.service
