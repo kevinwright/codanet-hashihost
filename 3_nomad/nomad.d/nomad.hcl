@@ -4,13 +4,14 @@ datacenter = "dc1"
 
 # Enable the server
 server {
-  enabled          = true
+  enabled = true
+  bootstrap_expect = 3
 }
 
 client {
   enabled = true
   options {
-    "driver.raw_exec.enable"    = "1"
+    "driver.raw_exec.enable" = "1"
     "docker.privileged.enabled" = "true"
   }
 }
