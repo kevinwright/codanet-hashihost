@@ -9,7 +9,15 @@ source $script_dir/../util/determine_networks.sh
 # mkdir -p /etc/vault.d
 # mkdir -p /var/hcp/vault/data
 # chown --recursive vault:vault /var/hcp/vault
+case $(uname) in 
+  Darwin)
+    export conf_dir="/tmp/vault.d"
+    ;;
+  Linux)
+    export conf_dir="/etc/vault.d"
+    ;;
+esac
 
 systemctl stop vault.service
-cat "$script_dir/vault.hcl.template" | envsubst > /tmp/vault.hcl
+cat "$script_dir/vault.hcl.template" | envsubst > ${conf_dir}/vault.hcl
 systemctl start vault.service
