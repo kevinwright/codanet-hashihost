@@ -100,7 +100,12 @@ apt-get -y install \
   consul \
   consul-template \
   vault \
-  terraform
+  terraform \
+  golang-go
+
+# Groups and passwordless sudo
+printf "● Installing go-discover ... "
+go install github.com/hashicorp/go-discover/cmd/discover@latest
 
 # Groups and passwordless sudo
 printf "● Enabling sudo without a password ... "

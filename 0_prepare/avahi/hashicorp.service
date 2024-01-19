@@ -3,17 +3,18 @@
   <name replace-wildcards="yes">Hashicorp on %h</name>
 
   <service protocol="ipv4">
-    <type>_hashicorp_nomad_server._tcp</type>
+    <type>_nomad._tcp</type>
     <port>4646</port>
   </service>
 
   <service protocol="ipv4">
-    <type>_hashicorp_consul_server._tcp</type>
+    <type>_consul._tcp</type>
     <port>8500</port>
   </service>
 
   <service protocol="ipv4">
-    <type>_hashicorp_vault_server._tcp</type>
+    <type>_vault._tcp</type>
     <port>8200</port>
   </service>
 </service-group>
+

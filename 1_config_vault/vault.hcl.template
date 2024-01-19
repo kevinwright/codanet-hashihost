@@ -1,0 +1,29 @@
+ui = true
+cluster_addr  = "https://${lan_ip}:8201"
+api_addr      = "https://${lan_ip}:8200"
+disable_mlock = true
+
+storage "raft" {
+  path = "/var/hcp/vault/data"
+  node_id = "${hostname}"
+  retry_join {
+    auto_join = "provider=mdns v4=true v6=false service=_hashicorp_vault_server._tcp"
+  }
+}
+
+listener "tcp" {
+  address         = "0.0.0.0:8200"
+  cluster_address = "${lan_ip}:8201"
+  tls_disable     = true
+}
+
+seal "transit" {
+   address            = "http://${lan_ip}:8200"
+   # token is read from VAULT_TOKEN env
+   # token              = ""
+   disable_renewal    = "false"
+
+   // Key configuration
+   key_name           = "unseal_key"
+   mount_path         = "transit/"
+}
