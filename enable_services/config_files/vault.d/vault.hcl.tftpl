@@ -1,11 +1,14 @@
 ui = true
+cluster_addr  = "https://${lan_ip}:8201"
+api_addr      = "https://${lan_ip}:8200"
 disable_mlock = true
 
-backend "consul" {
-  path          = "vault/"
-  address       = "${lan_ip}:8500"
-  cluster_addr  = "https://${lan_ip}:8201"
-  redirect_addr = "http://${lan_ip}:8200"
+storage "raft" {
+  path = "/var/hashi/vault/data"
+  node_id = "raft_node_id"
+  retry_join {
+    auto_join = "provider=mdns v4=true v6=false service=_hashicorp_vault_server._tcp"
+  }
 }
 
 listener "tcp" {
