@@ -107,6 +107,18 @@ apt-get -y install \
 printf "● Installing go-discover ... "
 go install github.com/hashicorp/go-discover/cmd/discover@latest
 
+# Enable Bridge networking
+printf "● Installing CNI drivers ... "
+
+curl -L -o cni-plugins.tgz \
+  "https://github.com/containernetworking/plugins/releases/download/v1.0.0/cni-plugins-linux-amd64-v1.0.0.tgz" && \
+  mkdir -p /opt/cni/bin && \
+  tar -C /opt/cni/bin -xzf cni-plugins.tgz
+
+printf "● Adding sysctl.d conf for bridge network ... "
+cp -f ./sysctl.d/* /etc/sysctl.d
+
+
 # Groups and passwordless sudo
 printf "● Enabling sudo without a password ... "
 
