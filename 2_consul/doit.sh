@@ -23,4 +23,6 @@ esac
 systemctl stop consul.service
 cat "$script_dir/consul.d/consul.hcl" | envsubst > ${conf_dir}/consul.hcl
 systemctl --no-pager start consul.service
+sleep 2
 systemctl --no-pager status consul.service
+consul members
